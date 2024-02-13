@@ -91,6 +91,9 @@ function App() {
     }
 
     function getAvailableRow(): number {
+        if (items.length == 0)
+            return 1
+
         const last = items.reduce((acc: IItem, t: IItem) => t.line > acc.line ? t : acc)
 
         const availableItems = items.filter(t => t.end != null && moment.unix(t.end).isBefore(moment(), 'month'))
